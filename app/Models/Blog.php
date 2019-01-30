@@ -3,17 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
 {
-    // protected $table = 'ngasal'  untuk mengurus table yang bernama "Ngasal",
-    // jika sama makan tidak perlu di buat variable Table lagi.
-
-    // public $timestamps = false; // mengeblok field created_at dan updated_at.
-
-    //whitelist
-    // protected $fillable = ['title', 'description'];
-
+  use SoftDeletes;
+  protected $dates = ['deleted_at'];
+  
     //blacklist
     protected $guarded = [];
 }

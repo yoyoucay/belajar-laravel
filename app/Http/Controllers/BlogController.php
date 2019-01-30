@@ -44,8 +44,15 @@ class BlogController extends Controller
       // Blog::destroy(28); delete 1 data
       // Blog::destroy([30, 31]);
 
+      // SoftDeletes
+      // $blog = Blog::find(5)->delete();
 
-      $blogs = Blog::all();
+
+      // return SoftDeletes
+      Blog::withTrashed()->restore();
+
+      $blogs = Blog::all(); // akan menampilkan semua data , kecuali yang sudah terhapus pada web.
+      // $blogs = Blog::withTrashed()->get(); // akan mengembalikan data yang sudah terhapus pada web.
       // DB::table('blogs')->where('id', '>' , '5')->delete();
         return view('blog/home', ['blogs' => $blogs]);
     }
@@ -56,8 +63,7 @@ class BlogController extends Controller
 
         // akan menampilkan not found jika $id tidak ditemukan
         if(!$blog)
-          dd('Not Found');
-
+          abort(404); // akan menampilkan notfound404 page
 
         return view('blog/single', ['blog' => $blog]);
     }
