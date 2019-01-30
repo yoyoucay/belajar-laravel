@@ -15,7 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('blog/home');
-    // return 'Halo Semua !';
-});
+Route::get('/blog', 'BlogController@index');
+Route::get('/blog/{id}', 'BlogController@show');
