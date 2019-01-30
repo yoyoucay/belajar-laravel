@@ -9,5 +9,11 @@ class Blog extends Model
     // protected $table = 'ngasal'  untuk mengurus table yang bernama "Ngasal",
     // jika sama makan tidak perlu di buat variable Table lagi.
 
-    public $timestamps = false; // mengeblok field created_at dan updated_at.
+    // public $timestamps = false; // mengeblok field created_at dan updated_at.
+
+    //whitelist
+    // protected $fillable = ['title', 'description'];
+
+    //blacklist
+    protected $guarded = [];
 }
