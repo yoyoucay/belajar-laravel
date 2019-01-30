@@ -67,4 +67,24 @@ class BlogController extends Controller
 
         return view('blog/single', ['blog' => $blog]);
     }
+
+    public function edit($id)
+    {
+        $blog = Blog::find($id);
+
+        // akan menampilkan not found jika $id tidak ditemukan
+        if(!$blog)
+          abort(404); // akan menampilkan notfound404 page
+
+        return view('blog/edit', ['blog' => $blog]);
+    }
+
+    public function update(Request $request, $id){
+      $blog = Blog::find($id);
+      $blog->title = $request->title;
+      $blog->description = $request->description;
+      $blog->save();
+      dd('Berhasil');
+
+    }
 }
