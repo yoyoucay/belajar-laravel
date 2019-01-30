@@ -16,6 +16,17 @@ Route::get('/', function () {
 });
 
 Route::get('/blog', 'BlogController@index');
+
+// Create Blog
+Route::get('/blog/create', 'BlogController@create');
+Route::post('/blog', 'BlogController@store');
+
+// Show spesifik blog
 Route::get('/blog/{id}', 'BlogController@show');
+
+//Edit
 Route::get('/blog/{id}/edit', 'BlogController@edit');
 Route::put('/blog/{id}', 'BlogController@update');
+
+// Delete Blog
+Route::delete('/blog/{id}', 'BlogController@destroy');
