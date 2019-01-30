@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Blog</title>
-</head>
-<body>
+@extends('layouts.master')
+
+@section('title', 'Beranda')
+
+@section('content')
     <h1>Ini adalah halaman Beranda Blog </h1>
-</body>
-</html>
+    <p>ya isinya cuma gini aja</p>
+@endsection
