@@ -52,6 +52,12 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+      // Validation Form
+      $this->validate($request, [
+        'title'       => 'required|min:5',
+        'description' => 'required|min:5|max:20'
+      ]);
+
       $blog = new Blog;
       $blog->title = $request->title;
       $blog->description = $request->description;
