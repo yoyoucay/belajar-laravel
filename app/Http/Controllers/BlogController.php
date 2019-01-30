@@ -71,4 +71,9 @@ class BlogController extends Controller
       return redirect('blog');
     }
 
+    public function viewPagination()
+    {
+        return view('blog/pagination');
+    }
+
 }

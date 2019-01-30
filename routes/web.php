@@ -30,3 +30,5 @@ Route::put('/blog/{id}', 'BlogController@update');
 
 // Delete Blog
 Route::delete('/blog/{id}', 'BlogController@destroy');
+
+Route::get('/pagination', 'BlogController@viewPagination');
