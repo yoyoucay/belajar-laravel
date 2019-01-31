@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\BlogPosted;
 use App\Models\Blog; // menambahkan Directory Models Blog kedalam BlogController
 
 class BlogController extends Controller
@@ -55,13 +57,16 @@ class BlogController extends Controller
       // Validation Form
       $this->validate($request, [
         'title'       => 'required|min:5',
-        'description' => 'required|min:5|max:20'
+        'description' => 'required|min:5'
       ]);
 
       $blog = new Blog;
       $blog->title = $request->title;
       $blog->description = $request->description;
       $blog->save();
+
+      // Mengirim emails
+      Mail::to('emailuser@lala.com')->send(new BlogPosted($blog));
 
       return redirect('blog');
     }
