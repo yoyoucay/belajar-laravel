@@ -69,11 +69,20 @@ class BlogController extends Controller
       Mail::to('emailuser@lala.com')->send(new BlogPosted($blog));
 
       return redirect('blog');
+      // return redirect()->route('test');
     }
 
     public function destroy($id){
       $blog = Blog::find($id)->delete();
       return redirect('blog');
+    }
+
+    public function testing(Request $request){
+      if ($request->method() == "GET") {
+        dd('ini adalah Method GET');
+      }else {
+        dd('ini adalah Method POST');
+      }
     }
 
 }

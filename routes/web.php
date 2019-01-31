@@ -15,20 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog', 'BlogController@index');
+// Pre
+Route::group(['prefix' => 'blog'], function(){
 
-// Create Blog
-Route::get('/blog/create', 'BlogController@create');
-Route::post('/blog', 'BlogController@store');
+  Route::match(['get','post'], '/testing', 'BlogController@testing')->name('test');
 
-// Show spesifik blog
-Route::get('/blog/{id}', 'BlogController@show');
+  Route::get('/', 'BlogController@index');
 
-//Edit
-Route::get('/blog/{id}/edit', 'BlogController@edit');
-Route::put('/blog/{id}', 'BlogController@update');
+  // Create Blog
+  Route::get('/create', 'BlogController@create');
+  Route::post('/', 'BlogController@store');
 
-// Delete Blog
-Route::delete('/blog/{id}', 'BlogController@destroy');
+  // Show spesifik blog
+  Route::get('/{id}', 'BlogController@show');
 
-Route::get('/pagination', 'BlogController@viewPagination');
+  //Edit
+  Route::get('/{id}/edit', 'BlogController@edit');
+  Route::put('/{id}', 'BlogController@update');
+
+  // Delete Blog
+  Route::delete('/{id}', 'BlogController@destroy');
+
+  Route::get('/pagination', 'BlogController@viewPagination');
+});
