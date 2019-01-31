@@ -7,4 +7,5 @@
     <h3>{{ $blog->title }}</h3>
     <hr>
     <p>{{ $blog->description }}</p>
+    <img src="{{ asset('storage/blog/'.$blog->featured_img)}}" alt="" width="150">
   @endsection

@@ -61,14 +61,15 @@ class BlogController extends Controller
         'featured_img' => 'mimes:jpeg,jpg,png|max:1000' // menentukan ukuran dan format file
       ]);
 
-      $blog = new Blog;
-      $blog->title = $request->title;
-      $blog->description = $request->description;
-      $blog->save();
-
       // Upload File
-      $request->file('featured_img')->store('blog');
-      dd('Berhasil! upload file');
+      $filename = time() . '.jpeg';
+      $request->file('featured_img')->storeAs('public/blog', $filename);
+
+      $blog = new Blog;
+      $blog->title        = $request->title;
+      $blog->description  = $request->description;
+      $blog->featured_img = $filename;
+      $blog->save();
 
       // Mengirim emails
       Mail::to('emailuser@lala.com')->send(new BlogPosted($blog));
