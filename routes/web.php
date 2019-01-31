@@ -15,7 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Pre
+// Resource Controller
+/*
+  php artisan make:controller <nama-controller> --resource
+
+  command diatas akan menggenerate controller baru yang isinya sudah otomatis
+  terbuat untuk method CRUD
+*/
+
+Route::resource('users', 'UserController');
+
+
+// Prefix
 Route::group(['prefix' => 'blog'], function(){
 
   Route::match(['get','post'], '/testing', 'BlogController@testing')->name('test');
