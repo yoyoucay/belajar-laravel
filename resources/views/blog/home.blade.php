@@ -20,4 +20,6 @@
     @endforeach
   </div>
 
+  {{ $blogs->appends(Request::input())->links() }}
+
 @endsection

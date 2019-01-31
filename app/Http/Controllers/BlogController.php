@@ -11,7 +11,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(5);
         return view('blog/home', ['blogs' => $blogs]);
     }
 
@@ -69,11 +69,6 @@ class BlogController extends Controller
     public function destroy($id){
       $blog = Blog::find($id)->delete();
       return redirect('blog');
-    }
-
-    public function viewPagination()
-    {
-        return view('blog/pagination');
     }
 
 }
