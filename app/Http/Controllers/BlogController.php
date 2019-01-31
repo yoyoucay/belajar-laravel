@@ -57,13 +57,18 @@ class BlogController extends Controller
       // Validation Form
       $this->validate($request, [
         'title'       => 'required|min:5',
-        'description' => 'required|min:5'
+        'description' => 'required|min:5',
+        'featured_img' => 'mimes:jpeg,jpg,png|max:1000' // menentukan ukuran dan format file
       ]);
 
       $blog = new Blog;
       $blog->title = $request->title;
       $blog->description = $request->description;
       $blog->save();
+
+      // Upload File
+      $request->file('featured_img')->store('blog');
+      dd('Berhasil! upload file');
 
       // Mengirim emails
       Mail::to('emailuser@lala.com')->send(new BlogPosted($blog));
